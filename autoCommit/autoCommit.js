@@ -44,7 +44,7 @@ async function runAutoCommits() {
       if (fs.existsSync(fullPath)) {
         randomEdit(fullPath);
 
-        const commitMessage = `Update ${path.basename(file)} — auto commit`;
+        const commitMessage = `Update ${path.basename(file)} `;
 
         // Generate a random commit date within 10 days from startDate
         const randomDayOffset = Math.floor(Math.random() * daysRange);
