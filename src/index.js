@@ -1,30 +1,31 @@
-import express from "express";
-import dotenv from "dotenv";
-import dbConnect from "./config/dbConnect.js";
-import authRoutes from "./routes/authRoutes.js";
-import userRoutes from "./routes/userRoutes.js";
-import { runAutoCommits } from "../autoCommit/autoCommit.js";
+const express = require('express');
+const dotenv = require('dotenv').config();
+const dbConnect = require('./config/dbConnect.js');
+const authRoutes = require("./routes/authRoutes.js"); 
+const userRoutes = require("./routes/userRoutes.js");
 
-dotenv.config();
+// If you want auto-commit with simple-git in CommonJS:
+const { runAutoCommits } = require('../autoCommit/autoCommit.js');
+
 dbConnect();
 
 const app = express();
-
 app.use(express.json());
 
 // Routes
 app.use("/api/auth/", authRoutes);
 app.use("/api/user/", userRoutes);
 
-// OPTIONAL: Run auto commit at server start
+// Optional: trigger auto-commit at server start
 // runAutoCommits();
 
-// Endpoint to trigger auto commit
+// Optional: API to trigger auto-commit manually
 app.get("/auto-commit", async (req, res) => {
   await runAutoCommits();
-  console.log("Auto commits executed and pushed to GitHub (master)");
-  res.send("Auto commits executed and pushed to GitHub (master)");
+  res.send("Auto commits executed and pushed to GitHub (main)");
 });
 
 const PORT = process.env.PORT || 3001;
-app.listen(PORT, () => console.log(`Server running on ${PORT}`));
+app.listen(PORT, () => {
+  console.log(`Server listening on port ${PORT}`);
+});

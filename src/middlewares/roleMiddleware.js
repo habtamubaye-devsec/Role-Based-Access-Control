@@ -7,4 +7,4 @@ const authorizeRoles = (...allowedRoles) => {
     }
 };
 
-module.exports =authorizeRoles;
+module.exports =authorizeRoles;// Auto edit at 2025-11-26T17:47:27.150Z

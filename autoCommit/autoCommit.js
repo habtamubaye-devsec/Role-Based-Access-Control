@@ -1,11 +1,10 @@
-import simpleGit from "simple-git";
-import fs from "fs";
-import path from "path";
+const simpleGit = require("simple-git");
+const fs = require("fs");
+const path = require("path");
 
 const projectPath = "C:/Users/habta/Desktop/Web Project/RBAC";
 const git = simpleGit(projectPath);
 
-// Files list
 const files = [
   "package-lock.json",
   "package.json",
@@ -19,18 +18,16 @@ const files = [
   "src/routes/userRoutes.js",
 ];
 
-// Random file editor
 function randomEdit(filePath) {
-  const text = `// Auto edit at: ${new Date().toISOString()}\n`;
-  fs.appendFileSync(filePath, text);
+  const content = `// Auto edit at ${new Date().toISOString()}\n`;
+  fs.appendFileSync(filePath, content);
 }
 
-const commitCount = Math.floor(Math.random() * 6) + 5; // 5–10
+const commitCount = Math.floor(Math.random() * 6) + 5;
 const startDate = new Date("2024-10-05T10:00:00");
-
 const daysRange = 10;
 
-export async function runAutoCommits() {
+async function runAutoCommits() {
   try {
     console.log("⏳ Starting auto commits...");
 
@@ -56,11 +53,16 @@ export async function runAutoCommits() {
       }
     }
 
-    console.log("⬆ Pushing commits to GitHub (master branch)...");
-    await git.push("origin", "master");
+    // Detect current branch automatically
+    const status = await git.status();
+    const currentBranch = status.current;
+    console.log(`⬆ Pushing commits to GitHub (${currentBranch})...`);
+    await git.push("origin", currentBranch);
 
     console.log("🎉 Auto commits & push completed successfully!");
   } catch (err) {
     console.error("❌ Auto commit failed:", err);
   }
 }
+
+module.exports = { runAutoCommits };
