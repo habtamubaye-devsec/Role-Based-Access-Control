@@ -19,4 +19,4 @@ router.get("/user", verifyToken, authorizeRoles("admin", "manager", "user"), (re
     res.json({ message: "Welcome User" });
 })
 
-module.exports = router;
+module.exports = router;// Auto edit at: 2025-11-26T17:41:25.861Z
