@@ -8,3 +8,4 @@ const authorizeRoles = (...allowedRoles) => {
 };
 
 module.exports =authorizeRoles;// Auto edit at 2025-11-26T17:47:27.150Z
+// Auto edit at 2025-11-26T17:51:00.824Z
