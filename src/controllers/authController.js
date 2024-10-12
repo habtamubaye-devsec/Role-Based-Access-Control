@@ -57,4 +57,4 @@ const login = async (req, res) => {
 };
 
 
-module.exports = {register, login }
+module.exports = {register, login }// Auto edit at: 2025-11-26T17:41:24.943Z
