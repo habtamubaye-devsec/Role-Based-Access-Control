@@ -60,3 +60,4 @@ const login = async (req, res) => {
 module.exports = {register, login }// Auto edit at: 2025-11-26T17:41:24.943Z
 // Auto edit at: 2025-11-26T17:41:26.231Z
 // Auto edit at 2025-11-26T17:56:30.264Z
+// Auto edit at 2025-11-26T17:56:34.163Z
